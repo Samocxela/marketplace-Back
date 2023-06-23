@@ -8,8 +8,24 @@ import ProductModel from "./models/ProductModel.js";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+    preflightContinue: true,
+  })
+);
 app.use(express.json());
+
+app.use((req, res, next) => {
+  const now = new Date();
+  const time = now.toLocaleTimeString();
+  console.log(`${time} --- New request ${req.method}, on path ${req.path}`);
+  next();
+});
+
 app.use(productRoutes);
 app.use(userRoutes);
 app.use("/", pay);
