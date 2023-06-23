@@ -1,7 +1,7 @@
 //importamos el modelo
 
 import ProductModel from "../models/ProductModel.js";
-import { productsStock, productMinStock } from "../main.js";
+import { productsStock, productMinStock } from "../index.js";
 import { sendMail } from "../mail/mail.js";
 
 //mostrar todos los registros
